@@ -1,0 +1,65 @@
+<% layout('layouts/boilerplate') %>
+    <link rel="stylesheet" href="/css/plans/newPlan.css">
+
+    <div class="create-plan-wrapper py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    <div class="form-glass-card">
+                        <div class="text-center mb-4">
+                            <div class="icon-circle bg-success-light mb-3">
+                                <i class="bi bi-journal-bookmark-fill text-success fs-3"></i>
+                            </div>
+                            <h3 class="fw-bold text-dark">خطة حفظ جديدة</h3>
+                            <p class="text-muted small">ابدأ رحلتك المباركة بتنظيم وردك اليومي</p>
+                        </div>
+
+                        <form action="/plan" method="POST" id="planForm">
+                            <div class="custom-input-group mb-3">
+                                <label class="small fw-bold text-secondary mb-1">اختر السورة</label>
+                                <select name="surahId" id="surahSelect"
+                                    class="form-select border-0 shadow-sm custom-select" required>
+                                    <option value="" disabled selected>قائمة السور...</option>
+                                    <% surahs.forEach(surah=> { %>
+                                        <option value="<%= surah.number %>" data-ayahs="<%= surah.numberOfAyahs %>">
+                                            <%= surah.number %> - <%= surah.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                                <div id="ayahHint" class="small mt-1 text-success d-none"></div>
+                            </div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label class="small fw-bold text-secondary mb-1">من آية</label>
+                                    <input type="number" name="startAyah" class="form-control border-0 shadow-sm"
+                                        placeholder="1" required>
+                                </div>
+                                <div class="col-6">
+                                    <label class="small fw-bold text-secondary mb-1">إلى آية</label>
+                                    <input type="number" name="endAyah" class="form-control border-0 shadow-sm"
+                                        placeholder="--" required>
+                                </div>
+                            </div>
+
+                            <div class="custom-input-group mb-4">
+                                <label class="small fw-bold text-secondary mb-1">المقدار اليومي</label>
+                                <div class="input-group shadow-sm rounded">
+                                    <input type="number" name="dailyCount" class="form-control border-0"
+                                        placeholder="مثلاً: 5" required>
+                                    <span class="input-group-text bg-white border-0 text-muted small px-3">آيات</span>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="btn btn-success w-100 py-3 fw-bold shadow-sm rounded-pill mt-2 transition-button">
+                                تأكيد وإنشاء الخطة
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/plans/newPlan.js"></script>

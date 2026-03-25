@@ -1,0 +1,101 @@
+<%- layout('layouts/boilerplate') %>
+
+    <h2 class="mb-4 text-center fw-bold">
+        <%= title %>
+    </h2>
+
+    <% athkar.forEach(item=> { %>
+        <div class="card mb-4 p-4">
+
+            <p class="zekr-text mb-3">
+                <%= item.text %>
+            </p>
+
+            <div class="zekr-info">
+                <span>التكرار: <%= item.repeat %></span>
+                <% if (item.source) { %>
+                    <span>
+                        <%= item.source %>
+                    </span>
+                    <% } %>
+            </div>
+
+            <% if (item.note) { %>
+                <div class="zekr-note">
+                    <%= item.note %>
+                </div>
+                <% } %>
+
+        </div>
+        <% }) %>
+
+            <script>
+                function countDown(btn) {
+                    const span = btn.querySelector('.count-num');
+                    let currentCount = parseInt(span.innerText);
+
+                    if (currentCount > 0) {
+                        currentCount--;
+                        span.innerText = currentCount;
+
+                        if (currentCount === 0) {
+                            btn.classList.replace('btn-outline-success', 'btn-secondary');
+                            btn.disabled = true;
+                            btn.innerText = "تمت القراءة";
+                        }
+                    }
+                }
+            </script>
+
+            <style>
+                body {
+                    background: linear-gradient(180deg, #f8f9fa, #eef3f1);
+                    font-family: "Tajawal", sans-serif;
+                }
+
+                h2 {
+                    color: #2f7a4f;
+                }
+
+                .card {
+                    background: #ffffff;
+                    border: none;
+                    border-radius: 18px;
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+                    transition: all .25s ease;
+                }
+
+                .card:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+                }
+
+                .zekr-text {
+                    font-size: 1.15rem;
+                    line-height: 1.9;
+                    color: #2c2c2c;
+                }
+
+                .zekr-info {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: .85rem;
+                    color: #6c757d;
+                    border-top: 1px dashed #e9ecef;
+                    padding-top: 8px;
+                    margin-top: 10px;
+                }
+
+                .zekr-note {
+                    background: #f1f8f4;
+                    color: #2f7a4f;
+                    padding: 10px 14px;
+                    border-radius: 12px;
+                    font-size: .9rem;
+                    margin-top: 12px;
+                }
+
+                .zekr-btn {
+                    font-size: 1.1rem;
+                }
+            </style>

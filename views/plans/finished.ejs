@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Finished Plan</title>
+    <link rel="stylesheet" href="/css/plans/finished.css">
+</head>
+
+<body>
+    <div class="card">
+        <h1>مبروك!</h1>
+
+        <p>
+            لقد أنهيت خطة حفظ سورة
+            <strong>
+                <%= surah.name %>
+            </strong>
+        </p>
+
+        <p>
+            عدد الآيات المحفوظة:
+            <strong>
+                <%= plan.endAyah - plan.startAyah + 1 %>
+            </strong>
+        </p>
+
+        <p>
+            استمر في المراجعة ولا تنسَ ما حفظت
+        </p>
+
+        <a href="/dashboard" class="btn">العودة للداشبورد</a>
+    </div>
+</body>
+
+</html>

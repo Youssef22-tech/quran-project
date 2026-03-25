@@ -1,0 +1,48 @@
+<%- layout('layouts/boilerplate') %>
+
+    <link rel="stylesheet" href="/css/plans/reviews.css">
+
+    <div class="review-container">
+        <div class="surah-info">
+            <h2 class="mb-3"><b>مراجعة</b></h2>
+            <h3>
+                <%= surah.number %> - <%= surah.name %>
+            </h3>
+            <p class="text-muted">إجمالي الآيات: <%= surah.numberOfAyahs %>
+            </p>
+        </div>
+
+        <div class="progress-section">
+            <div class="d-flex justify-content-between mb-2">
+                <span>الإنجاز:</span>
+                <span>
+                    <%= plan.completedAyahs %> / <%= plan.endAyah - plan.startAyah + 1 %>
+                </span>
+            </div>
+            <div class="progress" style="height: 12px;">
+                <div class="progress-bar bg-primary" role="progressbar"
+                    style="width: <%= (plan.completedAyahs / (plan.endAyah - plan.startAyah + 1)) * 100 %>%"
+                    aria-valuenow="<%= plan.completedAyahs %>" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+
+        <div class="ayahs-list">
+            <% completedAyahs.forEach((ayah, index)=> { %>
+                <div class="ayah">
+                    <span class="ayah-number">
+                        <%= plan.startAyah + index %>
+                    </span>
+                    <h2>
+                        <%= ayah.text %>
+                    </h2>
+                </div>
+                <% }) %>
+        </div>
+
+        <div class="btn-save-container">
+            <button class="btn-save">
+                <a href="/dashboard">تم الحفظ!</a>
+            </button>
+        </div>
+    </div>

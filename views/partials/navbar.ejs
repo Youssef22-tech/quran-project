@@ -1,0 +1,54 @@
+<style>
+    .nav-link:hover {
+        background: #6c757d;
+    }
+</style>
+
+<nav class="navbar navbar-dark bg-dark shadow-sm sticky-top">
+    <div class="container d-flex align-items-center">
+
+        <button class="btn btn-dark p-0 me-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+            <i class="bi bi-list fs-3"></i>
+        </button>
+
+        <a class="navbar-brand fw-bold m-0 px-3" href="/dashboard">Quran</a>
+
+        <div class="d-flex align-items-center">
+            <% if (typeof user !=='undefined' && user) { %>
+                <button class="btn btn-sm btn-outline-danger"><a href="/logout"
+                        style="text-decoration: none; color: white;">Logout</a></button>
+                <% } else { %>
+                    <a href="/login" class="btn btn-sm btn-light ms-2">دخول</a>
+                    <% } %>
+        </div>
+
+    </div>
+</nav>
+
+<div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu" style="width: 280px;">
+    <div class="offcanvas-header border-bottom border-secondary">
+        <h5 class="offcanvas-title">القائمة</h5>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body p-0 text-start">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white p-3 border-bottom" href="/dashboard"> <i
+                        class="bi bi-house-door me-2"></i> الرئيسية</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white p-3 border-bottom" href="/plan/new"> <i
+                        class="bi bi-plus-circle me-2"></i> خطة جديدة</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white p-3 border-bottom" href="/athkar"> <i class="bi bi-book me-2"></i>
+                    الأذكار</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white p-3 border-bottom" href="/questions"> <i
+                        class="bi bi-question-circle me-2"></i> الأسئلة</a>
+            </li>
+        </ul>
+    </div>
+</div>

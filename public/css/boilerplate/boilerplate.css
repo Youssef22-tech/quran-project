@@ -1,0 +1,22 @@
+ html,
+ body {
+     height: 100%;
+ }
+
+ body {
+     display: flex;
+     flex-direction: column;
+ }
+
+ main {
+     flex: shrink-0;
+ }
+
+ .footer a:hover {
+     color: #ffffff !important;
+     transition: 0.3s;
+ }
+
+ .container {
+     transition: 0.9s;
+ }

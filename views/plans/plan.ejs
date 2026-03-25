@@ -1,0 +1,113 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <link rel="stylesheet" href="/css/plans/plan.css">
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="position-relative text-center mb-4">
+                    <a href="/dashboard" class="btn btn-outline-secondary btn-sm position-absolute start-0">
+                        <i class="bi bi-arrow-right"></i> العودة للرئيسية
+                    </a>
+                    <div class="text-center flex-grow-1 tce">
+                        <h2 class="fw-bold text-success w-100">
+                            <%= surah.name %>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="progress mb-4" style="height: 8px;">
+                    <div id="main-progress" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                </div>
+
+                <% if (isLocked) { %>
+                    <div class="card shadow-sm border-0 rounded-4 p-5 text-center">
+                        <div class="card-body">
+                            <h3>تم إكمال ورد اليوم بنجاح </h3>
+                            <p class="text-muted">تستطيع البدء في الورد الجديد غداً</p>
+                            <div class="d-flex justify-content-center gap-3 my-4">
+                                <div class="bg-light rounded-3 px-4 py-3">
+                                    <div class="fs-2 fw-bold" id="cd-hours">00</div>
+                                    <div class="small text-muted">ساعة</div>
+                                </div>
+                                <div class="bg-light rounded-3 px-4 py-3">
+                                    <div class="fs-2 fw-bold" id="cd-minutes">00</div>
+                                    <div class="small text-muted">دقيقة</div>
+                                </div>
+                                <div class="bg-light rounded-3 px-4 py-3">
+                                    <div class="fs-2 fw-bold" id="cd-seconds">00</div>
+                                    <div class="small text-muted">ثانية</div>
+                                </div>
+                            </div>
+                            <a href="/dashboard" class="btn btn-primary px-4">لوحة التحكم</a>
+                        </div>
+                    </div>
+                    <% } else { %>
+
+                        <div id="quiz-container">
+                            <% todayAyahs.forEach((ayah, index)=> { %>
+
+                                <div class="ayah-step d-none" id="step-<%= index %>" data-original="<%= ayah.text %>"
+                                    data-audio="https://cdn.islamic.network/quran/audio/128/ar.alafasy/<%= ayah.number %>.mp3">
+
+                                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                                        <div class="card-body p-4 p-md-5 text-center">
+
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <button class="btn btn-success btn-sm toggle-audio-btn">
+                                                    <span class="btn-text">استماع</span>
+                                                </button>
+                                                <span class="badge bg-light text-dark border p-2">
+                                                    آية <%= startToday + index %>
+                                                </span>
+                                            </div>
+
+                                            <h2 class="quran-font mb-4 ayah-text-display display"
+                                                id="display-<%= index %>">
+                                                <%= ayah.text %>
+                                            </h2>
+
+                                            <div class="test-zone mt-4">
+                                                <textarea class="form-control text-end fs-4 p-3 mb-3 user-input"
+                                                    placeholder="اكتب الآية هنا..." rows="2" dir="rtl"></textarea>
+
+                                                <div class="d-grid gap-2">
+                                                    <button class="btn btn-dark btn-lg check-ayah-btn">التحقق من
+                                                        الحفظ</button>
+                                                    <button
+                                                        class="btn btn-link btn-sm text-decoration-none toggle-hint">
+                                                        إظهار الآية للمراجعة
+                                                    </button>
+                                                </div>
+
+                                                <div class="feedback fs-5 mt-3 fw-bold"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% }) %>
+
+                                    <div id="finish-card" class="d-none text-center p-5 bg-white shadow rounded-4">
+                                        <h2 class="mb-4">تم إتمام جميع الآيات بنجاح</h2>
+                                        <button class="btn btn-success btn-lg px-5 shadow rounded-pill"
+                                            id="final-submit">إنهاء وحفظ التقدم</button>
+                                    </div>
+
+                        </div>
+
+                        <% } %>
+            </div>
+        </div>
+    </div>
+
+    <audio id="player"></audio>
+
+    <script>
+        const nextAvailableAt = '<%= nextAvailableAt %>';
+    </script>
+
+    <script src="/js/plans/plan2.js"></script>

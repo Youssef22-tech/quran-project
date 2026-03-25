@@ -1,0 +1,56 @@
+.create-plan-wrapper {
+    background: radial-gradient(circle at top right, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 85vh;
+
+}
+
+.form-glass-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.icon-circle {
+    width: 65px;
+    height: 65px;
+    background-color: #e8f5e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.form-control,
+.form-select {
+    height: 50px;
+    border-radius: 12px !important;
+    padding-right: 15px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(25, 135, 84, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #198754 0%, #21a063 100%);
+    border: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(25, 135, 84, 0.2);
+}
+
+.custom-select {
+    cursor: pointer;
+}

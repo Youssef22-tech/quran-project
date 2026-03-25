@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap');
+
+.quran-font {
+    font-family: 'Amiri', serif;
+    line-height: 2.2;
+    color: #2c3e50;
+    user-select: none;
+}
+
+.ayah-card {
+    transition: all 0.3s ease;
+}
+
+.ayah-card:hover {
+    transform: scale(1.01);
+}
+
+.test-input {
+    border-radius: 10px;
+    border: 1px inset #eee;
+    background-color: #fcfcfc;
+}
+
+.bg-success-light {
+    background-color: #e8f5e9;
+}
