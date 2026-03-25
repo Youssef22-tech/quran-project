@@ -12,6 +12,8 @@ const planRoutes = require('./routes/plans')
 const dashboardRoutes = require('./routes/dashboard')
 const athkarRoutes = require('./routes/athkar')
 const flash = require('connect-flash')
+const connectMongo = require('connect-mongo');
+const MongoStore = connectMongo.default || connectMongo;
 
 mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
@@ -21,14 +23,29 @@ db.once('open', () => console.log('DB Connected!'));
 
 
 
+// app.use(session({
+//     secret: process.env.SESSION_SECRET || 'fallback_secret',
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//         secure: true,
+//         httpOnly: true,
+//         sameSite: 'strict',
+//         maxAge: 7 * 24 * 60 * 60 * 1000
+//     }
+// }));
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'fallback_secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        collectionName: 'sessions'
+    }),
     cookie: {
-        secure: true,
+        secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: 'lax',
         maxAge: 7 * 24 * 60 * 60 * 1000
     }
 }));
