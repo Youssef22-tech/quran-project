@@ -34,6 +34,7 @@ db.once('open', () => console.log('DB Connected!'));
 //         maxAge: 7 * 24 * 60 * 60 * 1000
 //     }
 // }));
+app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
