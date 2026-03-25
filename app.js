@@ -13,10 +13,11 @@ const dashboardRoutes = require('./routes/dashboard')
 const athkarRoutes = require('./routes/athkar')
 const flash = require('connect-flash')
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/quranProject');
+mongoose.connect(process.env.MONGO_URI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error'));
 db.once('open', () => console.log('DB Connected!'));
+// console.log(process.env.MONGO_URI);
 
 
 
